@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover useful gadgets and everyday tech picks at SmartCart India.">
+  <title>SmartCart India | Discover your next favourite</title>
+  <style>
+    :root{--ink:#172033;--muted:#697386;--brand:#5b5ce2;--brand2:#8586ff;--bg:#f6f7fb;--line:#e8eaf2;--white:#fff;--green:#16865b}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+    a{color:inherit;text-decoration:none}button,input{font:inherit}.wrap{width:min(1160px,92%);margin:auto}
+    .topbar{background:#171d32;color:#e8eaff;text-align:center;padding:9px 12px;font-size:12px;letter-spacing:.2px}
+    header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .logo{font-size:22px;font-weight:850;letter-spacing:-.8px}.logo span{color:var(--brand)}
+    .navlinks{display:flex;gap:26px;color:#5e6678;font-size:14px;font-weight:600}.navlinks a:hover{color:var(--brand)}
+    .navright{display:flex;align-items:center;gap:10px}.pill{border:1px solid var(--line);border-radius:999px;padding:10px 14px;background:#fff;font-size:13px;font-weight:700}
+    .hero{padding:52px 0 34px}.hero-box{overflow:hidden;position:relative;border-radius:28px;padding:54px;background:linear-gradient(120deg,#22294b,#4b4ed0 60%,#8b7df4);color:#fff;min-height:340px;display:flex;align-items:center}
+    .hero-copy{max-width:590px;position:relative;z-index:2}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.8px;font-weight:800;color:#d6d7ff}
+    h1{font-size:clamp(36px,5vw,58px);line-height:1.04;letter-spacing:-2px;margin:16px 0}.hero p{color:#e1e2ff;line-height:1.7;max-width:490px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:12px;padding:13px 18px;font-weight:800;cursor:pointer;transition:.2s}
+    .btn-primary{background:#fff;color:#383bb5;margin-top:12px}.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px #14183c44}
+    .hero-art{position:absolute;right:4%;bottom:-8px;width:38%;height:88%;display:flex;align-items:center;justify-content:center}
+    .orb{width:min(310px,90%);aspect-ratio:1;border-radius:50%;background:linear-gradient(145deg,#ffffff4d,#ffffff08);border:1px solid #ffffff55;display:grid;place-items:center;font-size:130px;box-shadow:0 30px 70px #10143c55}
+    .section{padding:26px 0 48px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:20px}
+    .section h2{font-size:28px;letter-spacing:-.8px;margin:0 0 6px}.sub{color:var(--muted);font-size:14px;margin:0}
+    .tools{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 24px}.search{flex:1;min-width:210px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:13px 15px;outline:none}.search:focus{border-color:var(--brand)}
+    select{border:1px solid var(--line);border-radius:12px;background:#fff;padding:12px 14px;color:var(--ink)}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.chip{border:1px solid var(--line);background:#fff;padding:9px 14px;border-radius:999px;font-size:13px;font-weight:700;color:#60697b;cursor:pointer}.chip.active,.chip:hover{background:#ececff;color:#4446c4;border-color:#dadaff}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.2s;display:flex;flex-direction:column}.card:hover{transform:translateY(-4px);box-shadow:0 16px 35px #20284a12}
+    .product-art{height:170px;display:grid;place-items:center;font-size:72px;background:linear-gradient(145deg,#f0f1ff,#f8f8ff);position:relative}
+    .tag{position:absolute;top:12px;left:12px;background:#fff;border-radius:999px;padding:6px 9px;font-size:10px;font-weight:850;color:#5557c9}
+    .card-body{padding:16px;display:flex;flex-direction:column;flex:1}.category{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#858da0;font-weight:800}
+    .card h3{font-size:16px;margin:7px 0 6px}.desc{font-size:12px;line-height:1.55;color:var(--muted);min-height:38px}
+    .price-row{display:flex;align-items:center;justify-content:space-between;margin:15px 0 13px}.price{font-size:19px;font-weight:850}.old{font-size:12px;color:#9299a8;text-decoration:line-through;margin-left:5px}
+    .rating{font-size:11px;color:#a56a0a;background:#fff7e8;border-radius:7px;padding:5px 7px}
+    .card-actions{display:flex;gap:8px;margin-top:auto}.buy{background:var(--brand);color:#fff;flex:1;padding:11px 8px;font-size:12px}.buy:hover{background:#4446c4}.save{background:#f1f2f8;color:#535b70;padding:10px 12px}
+    .empty{grid-column:1/-1;text-align:center;padding:45px;color:var(--muted);background:#fff;border-radius:16px}
+    .feature-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}.feature b{display:block;margin:9px 0 5px}.feature p{font-size:13px;color:var(--muted);line-height:1.6;margin:0}
+    .disclosure{background:#eeefff;border:1px solid #dfe0ff;padding:18px;border-radius:14px;color:#45478e;font-size:13px;line-height:1.6}
+    footer{background:#171d32;color:#e6e8f4;padding:36px 0;margin-top:12px}.foot{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}.foot p{font-size:13px;color:#b9bfd2;line-height:1.6;max-width:520px}.footlinks{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#d5d8e8}
+    .fine{border-top:1px solid #343a50;margin-top:24px;padding-top:18px;color:#9ea6bd;font-size:11px}
+    .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#171d32;color:#fff;padding:12px 18px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:50}.toast.show{opacity:1}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.hero-art{opacity:.55;right:-4%;width:45%}.navlinks{gap:14px}}
+    @media(max-width:620px){.nav{height:66px}.navlinks{display:none}.logo{font-size:19px}.hero{padding-top:24px}.hero-box{padding:32px 25px;min-height:380px;align-items:flex-start}.hero-copy{max-width:100%}.hero-art{width:100%;height:42%;right:0;bottom:-35px;opacity:.35}.orb{font-size:75px;width:190px}.section h2{font-size:24px}.grid{gap:11px}.product-art{height:125px;font-size:53px}.card-body{padding:12px}.card h3{font-size:14px}.desc{font-size:11px}.price{font-size:16px}.rating{display:none}.feature-row{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="topbar">Smart finds. Simple shopping. &nbsp; | &nbsp; Curated picks for everyday life</div>
+  <header>
+    <div class="wrap nav">
+      <a class="logo" href="#"><span>Smart</span>Cart India.</a>
+      <nav class="navlinks"><a href="#products">Shop</a><a href="#why-us">Why SmartCart</a><a href="#about">About</a></nav>
+      <div class="navright"><a class="pill" href="#products">Explore picks ↗</a></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="hero-box">
+        <div class="hero-copy">
+          <div class="eyebrow">A smarter way to discover</div>
+          <h1>Good gadgets.<br>Better everyday.</h1>
+          <p>Explore useful tech and everyday accessories, hand-picked to help you find products worth checking out.</p>
+          <a class="btn btn-primary" href="#products">Explore products&nbsp; →</a>
+        </div>
+        <div class="hero-art"><div class="orb">🎧</div></div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="products">
+      <div class="section-head">
+        <div><h2>Popular picks</h2><p class="sub">Browse our starter collection of everyday tech.</p></div>
+        <span class="sub" id="count">8 products</span>
+      </div>
+      <div class="tools">
+        <input class="search" id="search" type="search" placeholder="Search products..." aria-label="Search products">
+        <select id="sort" aria-label="Sort products">
+          <option value="featured">Sort: Featured</option>
+          <option value="low">Price: Low to high</option>
+          <option value="high">Price: High to low</option>
+          <option value="az">Name: A to Z</option>
+        </select>
+      </div>
+      <div class="chips" id="filters">
+        <button class="chip active" data-category="All">All products</button>
+        <button class="chip" data-category="Audio">Audio</button>
+        <button class="chip" data-category="Mobile">Mobile</button>
+        <button class="chip" data-category="Workspace">Workspace</button>
+        <button class="chip" data-category="Lifestyle">Lifestyle</button>
+      </div>
+      <div class="grid" id="productGrid"></div>
+    </section>
+
+    <section class="section wrap" id="why-us">
+      <div class="section-head"><div><h2>Shopping, made simpler</h2><p class="sub">A few things we want every visitor to know.</p></div></div>
+      <div class="feature-row">
+        <div class="feature"><span>🔎</span><b>Curated discovery</b><p>Find a focused selection of gadgets without endless scrolling.</p></div>
+        <div class="feature"><span>🧾</span><b>Clear product details</b><p>Check the retailer's latest price, specifications, availability and policies before buying.</p></div>
+        <div class="feature"><span>🔗</span><b>Retailer checkout</b><p>Purchases happen on the retailer's website, not directly on SmartCart India.</p></div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="about">
+      <div class="disclosure"><strong>Affiliate disclosure:</strong> SmartCart India may earn a commission when you purchase through qualifying affiliate links. This does not necessarily change the price you pay. Product prices and availability can change; always confirm details on the retailer's website. Some products shown here are demo listings until real affiliate links are added.</div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div><a class="logo" href="#"><span>Smart</span>Cart India.</a><p>Discover useful gadgets and everyday tech picks. SmartCart India is an independent product-discovery website and is not the retailer or manufacturer.</p></div>
+        <div class="footlinks"><a href="#products">Products</a><a href="#about">Affiliate disclosure</a><a href="mailto:hello@smartcartindia.example">Contact</a></div>
+      </div>
+      <div class="fine">© <span id="year"></span> SmartCart India. All rights reserved. Product names and trademarks belong to their respective owners.</div>
+    </div>
+  </footer>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    // DEMO DATA: Replace prices, product details and affiliateUrl with verified information.
+    // Add only affiliate URLs issued to you by a retailer/program after approval.
+    const products = [
+      {id:1,name:"Everyday Wireless Earbuds",category:"Audio",price:999,oldPrice:1499,emoji:"🎧",tag:"Popular pick",rating:"Demo listing",description:"Compact audio pick for music, calls and daily commutes.",affiliateUrl:"YOUR_AFFILIATE_LINK_1"},
+      {id:2,name:"Bluetooth Speaker",category:"Audio",price:1299,oldPrice:1799,emoji:"🔊",tag:"For your desk",rating:"Demo listing",description:"A portable speaker concept for home and travel.",affiliateUrl:"YOUR_AFFILIATE_LINK_2"},
+      {id:3,name:"Smart Watch",category:"Lifestyle",price:1799,oldPrice:2499,emoji:"⌚",tag:"Trending",rating:"Demo listing",description:"A wearable gadget listing. Check compatibility and features.",affiliateUrl:"YOUR_AFFILIATE_LINK_3"},
+      {id:4,name:"Adjustable Phone Stand",category:"Mobile",price:299,oldPrice:499,emoji:"📱",tag:"Everyday essential",rating:"Demo listing",description:"A simple stand idea for video calls and hands-free viewing.",affiliateUrl:"YOUR_AFFILIATE_LINK_4"},
+      {id:5,name:"Fast Charging Adapter",category:"Mobile",price:599,oldPrice:899,emoji:"🔌",tag:"Useful tech",rating:"Demo listing",description:"Check device compatibility and supported charging standards.",affiliateUrl:"YOUR_AFFILIATE_LINK_5"},
+      {id:6,name:"Laptop Desk Stand",category:"Workspace",price:899,oldPrice:1299,emoji:"💻",tag:"Work smarter",rating:"Demo listing",description:"A desk accessory idea for a more organized workspace.",affiliateUrl:"YOUR_AFFILIATE_LINK_6"},
+      {id:7,name:"LED Desk Light",category:"Workspace",price:749,oldPrice:1099,emoji:"💡",tag:"Desk upgrade",rating:"Demo listing",description:"A lighting pick for study desks and home workspaces.",affiliateUrl:"YOUR_AFFILIATE_LINK_7"},
+      {id:8,name:"Mini Power Bank",category:"Mobile",price:1199,oldPrice:1599,emoji:"🔋",tag:"On the go",rating:"Demo listing",description:"Portable power concept. Verify capacity and safety certifications.",affiliateUrl:"YOUR_AFFILIATE_LINK_8"}
+    ];
+
+    const grid = document.getElementById("productGrid");
+    const search = document.getElementById("search");
+    const sort = document.getElementById("sort");
+    const count = document.getElementById("count");
+    let activeCategory = "All";
+    let favourites = new Set();
+
+    const money = n => "₹" + n.toLocaleString("en-IN");
+    function render(){
+      let list = products.filter(p =>
+        (activeCategory === "All" || p.category === activeCategory) &&
+        (p.name + " " + p.category + " " + p.description).toLowerCase().includes(search.value.toLowerCase())
+      );
+      if(sort.value === "low") list.sort((a,b)=>a.price-b.price);
+      if(sort.value === "high") list.sort((a,b)=>b.price-a.price);
+      if(sort.value === "az") list.sort((a,b)=>a.name.localeCompare(b.name));
+      count.textContent = `${list.length} product${list.length===1?"":"s"}`;
+      if(!list.length){grid.innerHTML='<div class="empty">No products found. Try another search.</div>';return;}
+      grid.innerHTML = list.map(p=>`
+        <article class="card">
+          <div class="product-art"><span class="tag">${p.tag}</span>${p.emoji}</div>
+          <div class="card-body">
+            <div class="category">${p.category}</div>
+            <h3>${p.name}</h3>
+            <div class="desc">${p.description}</div>
+            <div class="price-row"><div><span class="price">${money(p.price)}</span><span class="old">${money(p.oldPrice)}</span></div><span class="rating">${p.rating}</span></div>
+            <div class="card-actions">
+              <button class="btn buy" onclick="goToRetailer(${p.id})">Check on retailer ↗</button>
+              <button class="btn save" aria-label="Save ${p.name}" title="Save to favourites" onclick="toggleFavourite(${p.id})">${favourites.has(p.id)?"♥":"♡"}</button>
+            </div>
+          </div>
+        </article>`).join("");
+    }
+    function showToast(message){
+      const t=document.getElementById("toast");t.textContent=message;t.classList.add("show");
+      setTimeout(()=>t.classList.remove("show"),2400);
+    }
+    function goToRetailer(id){
+      const p=products.find(x=>x.id===id);
+      if(!p.affiliateUrl || p.affiliateUrl.startsWith("YOUR_AFFILIATE_LINK")){
+        showToast("Demo link: add your approved affiliate URL in index.html first.");
+        return;
+      }
+      window.open(p.affiliateUrl,"_blank","noopener,noreferrer");
+    }
+    function toggleFavourite(id){
+      favourites.has(id)?favourites.delete(id):favourites.add(id);
+      render();showToast(favourites.has(id)?"Added to favourites":"Removed from favourites");
+    }
+    document.getElementById("filters").addEventListener("click",e=>{
+      const btn=e.target.closest("button[data-category]");if(!btn)return;
+      activeCategory=btn.dataset.category;
+      document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("active",c===btn));
+      render();
+    });
+    search.addEventListener("input",render);sort.addEventListener("change",render);
+    document.getElementById("year").textContent=new Date().getFullYear();
+    render();
+  </script>
+</body>
+</html>
